@@ -72,6 +72,31 @@ namespace GOL
             NextGeneration();
         }
 
+        private int CountNeighborsToroidal(int x, int y)
+        {
+            int count = 0;
+            int xLen = universe.GetLength(0);
+            int yLen = universe.GetLength(1);
+
+            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            {
+                for (int xOffset = -1; xOffset <= 1; xOffset++)
+                {
+                    int xCheck = x + xOffset;
+                    int yCheck = y + yOffset;
+
+                    if (xOffset == 0 && yOffset == 0) continue;
+                    if (xCheck < 0) xCheck = xLen - 1;
+                    if (yCheck < 0) yCheck = yLen - 1;
+                    if (xCheck >= xLen) xCheck = 0;
+                    if (yCheck >= yLen) yCheck = 0;
+                    if (universe[xCheck, yCheck] == true) count++;
+                }
+            }
+            return count;
+        }
+
+
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
 
