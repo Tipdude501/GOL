@@ -307,7 +307,7 @@ namespace GOL
             // playToolStripButton
             // 
             this.playToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.playToolStripButton.Image = global::GOL.Properties.Resources.PlayButton;
+            this.playToolStripButton.Image = global::GOL.Properties.Resources.Play;
             this.playToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.playToolStripButton.Name = "playToolStripButton";
             this.playToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -317,7 +317,7 @@ namespace GOL
             // pauseToolStripButton
             // 
             this.pauseToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pauseToolStripButton.Image = global::GOL.Properties.Resources.PauseButton;
+            this.pauseToolStripButton.Image = global::GOL.Properties.Resources.Pause;
             this.pauseToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pauseToolStripButton.Name = "pauseToolStripButton";
             this.pauseToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -327,7 +327,7 @@ namespace GOL
             // nextToolStripButton
             // 
             this.nextToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.nextToolStripButton.Image = global::GOL.Properties.Resources.NextButton;
+            this.nextToolStripButton.Image = global::GOL.Properties.Resources.Next;
             this.nextToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.nextToolStripButton.Name = "nextToolStripButton";
             this.nextToolStripButton.Size = new System.Drawing.Size(23, 22);
