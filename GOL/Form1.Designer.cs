@@ -54,8 +54,6 @@ namespace GOL
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.playToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.pauseToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.nextToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -220,8 +218,6 @@ namespace GOL
             this.openToolStripButton,
             this.saveToolStripButton,
             this.toolStripSeparator6,
-            this.cutToolStripButton,
-            this.toolStripSeparator7,
             this.playToolStripButton,
             this.pauseToolStripButton,
             this.nextToolStripButton,
@@ -264,20 +260,6 @@ namespace GOL
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cutToolStripButton
-            // 
-            this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
-            this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutToolStripButton.Name = "cutToolStripButton";
-            this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.cutToolStripButton.Text = "C&ut";
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
             // playToolStripButton
             // 
@@ -396,13 +378,11 @@ namespace GOL
         private System.Windows.Forms.ToolStripButton openToolStripButton;
         private System.Windows.Forms.ToolStripButton saveToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelGenerations;
         private System.Windows.Forms.ToolStripButton playToolStripButton;
         private System.Windows.Forms.ToolStripButton pauseToolStripButton;
         private System.Windows.Forms.ToolStripButton nextToolStripButton;
-        private System.Windows.Forms.ToolStripButton cutToolStripButton;
     }
 }
 
