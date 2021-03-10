@@ -30,7 +30,7 @@ namespace GOL
             InitializeComponent();
 
             // Setup the timer
-            timer.Interval = 100; // milliseconds
+            timer.Interval = 300; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer not running
         }
