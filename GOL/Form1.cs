@@ -13,11 +13,11 @@ namespace GOL
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[5, 5];
+        bool[,] universe = new bool[40, 40];
 
         // Drawing colors
-        Color gridColor = Color.Black;
-        Color cellColor = Color.Gray;
+        Color gridColor = Color.LightGray;
+        Color cellColor = Color.DarkMagenta;
 
         // The Timer class
         Timer timer = new Timer();
