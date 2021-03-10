@@ -268,7 +268,7 @@ namespace GOL
             this.playToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.playToolStripButton.Name = "playToolStripButton";
             this.playToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.playToolStripButton.Text = "toolStripButton1";
+            this.playToolStripButton.Text = "Play";
             this.playToolStripButton.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // pauseToolStripButton
@@ -278,7 +278,7 @@ namespace GOL
             this.pauseToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pauseToolStripButton.Name = "pauseToolStripButton";
             this.pauseToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.pauseToolStripButton.Text = "toolStripButton2";
+            this.pauseToolStripButton.Text = "Pause";
             this.pauseToolStripButton.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // nextToolStripButton
@@ -288,7 +288,7 @@ namespace GOL
             this.nextToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.nextToolStripButton.Name = "nextToolStripButton";
             this.nextToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.nextToolStripButton.Text = "toolStripButton3";
+            this.nextToolStripButton.Text = "Next";
             this.nextToolStripButton.Click += new System.EventHandler(this.nextToolStripButton_Click);
             // 
             // helpToolStripButton
