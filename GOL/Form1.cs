@@ -13,7 +13,7 @@ namespace GOL
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[40, 40];
+        bool[,] universe = new bool[30, 30];
 
         // Drawing colors
         Color gridColor = Color.LightGray;
