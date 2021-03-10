@@ -338,7 +338,7 @@ namespace GOL
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Game Of Life | Reilly da Silva";
+            this.Text = "Game Of Life - Reilly da Silva";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
