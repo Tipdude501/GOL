@@ -55,22 +55,16 @@ namespace GOL
                 }
             }
 
-            //copy from the scratchpad to universe
-            //make sure to invalidate either here in this methor or in the timer tic method
-
-
-            // Increment generation count
+            universe = scratchpad;
             generations++;
-
-            // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            graphicsPanel1.Invalidate();
         }
 
         // The event called by the timer every Interval milliseconds.
         private void Timer_Tick(object sender, EventArgs e)
         {
             NextGeneration();
-            graphicsPanel1.Invalidate();
         }
 
         private int CountNeighborsToroidal(int x, int y)
