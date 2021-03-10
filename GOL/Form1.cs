@@ -44,8 +44,9 @@ namespace GOL
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    //int count = CoungNeighborsFinite(x, y);
+                    int count = CountNeighborsToroidal(x, y);
                     
+
                     // apply the rules of life
                     
                     //after you decide if the cell lives or dies
@@ -200,6 +201,11 @@ namespace GOL
                 }
             }
             graphicsPanel1.Invalidate();
+        }
+
+        private void nextToolStripButton_Click(object sender, EventArgs e)
+        {
+            NextGeneration();
         }
     }
 }
