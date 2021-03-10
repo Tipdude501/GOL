@@ -38,6 +38,8 @@ namespace GOL
         // Calculate the next generation of cells
         private void NextGeneration()
         {
+            bool[,] scratchpad = new bool[universe.GetLength(0), universe.GetLength(1)];
+
             // Iterate through the universe in the y, top to bottom
             for (int y = 0; y < universe.GetLength(1); y++)
             {
@@ -45,14 +47,11 @@ namespace GOL
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
                     int count = CountNeighborsToroidal(x, y);
-                    
 
                     // apply the rules of life
-                    
-                    //after you decide if the cell lives or dies
-                    //you turn the cell on/off in the scratchpad
-                    //scratchpad will be the next generation, universe will be the previous
-
+                    if (count < 2 || count > 3) scratchpad[x, y] = false;
+                    if (universe[x, y] == true && (count == 3 || count == 2)) scratchpad[x, y] = true;
+                    if (universe[x, y] == false && count == 3) scratchpad[x, y] = true;
                 }
             }
 
@@ -71,6 +70,7 @@ namespace GOL
         private void Timer_Tick(object sender, EventArgs e)
         {
             NextGeneration();
+            graphicsPanel1.Invalidate();
         }
 
         private int CountNeighborsToroidal(int x, int y)
