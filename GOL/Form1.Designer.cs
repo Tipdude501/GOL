@@ -289,7 +289,7 @@ namespace GOL
             this.pauseToolStripButton.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.pauseToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.pauseToolStripButton.Text = "Pause";
-            this.pauseToolStripButton.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.pauseToolStripButton.Click += new System.EventHandler(this.pauseToolStripButton_Click);
             // 
             // nextToolStripButton
             // 

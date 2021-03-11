@@ -150,9 +150,6 @@ namespace GOL
                 float cellWidth = (float)(graphicsPanel1.ClientSize.Width - 1) / universe.GetLength(0);
                 float cellHeight = (float)(graphicsPanel1.ClientSize.Height - 1) / universe.GetLength(1);
 
-                //int cellWidth = graphicsPanel1.ClientSize.Width / universe.GetLength(0);
-                //int cellHeight = graphicsPanel1.ClientSize.Height / universe.GetLength(1);
-
 
                 // Calculate the cell that was clicked in
                 // CELL X = MOUSE X / CELL WIDTH
@@ -163,7 +160,6 @@ namespace GOL
                 // Toggle the cell's state
                 universe[x, y] = !universe[x, y];
 
-                // Tell Windows you need to repaint
                 graphicsPanel1.Invalidate();
             }
         }
@@ -178,29 +174,27 @@ namespace GOL
             timer.Enabled = true;
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void pauseToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
-            //Enabled = !Enabled;
+        }
+
+        private void nextToolStripButton_Click(object sender, EventArgs e)
+        {
+            NextGeneration();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Iterate through the universe in the y, top to bottom
+            //set all the cells in the universe to false
             for (int y = 0; y < universe.GetLength(1); y++)
             {
-                // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
                     universe[x, y] = false;
                 }
             }
             graphicsPanel1.Invalidate();
-        }
-
-        private void nextToolStripButton_Click(object sender, EventArgs e)
-        {
-            NextGeneration();
         }
     }
 }
