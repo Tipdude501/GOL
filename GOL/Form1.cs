@@ -30,7 +30,7 @@ namespace GOL
             InitializeComponent();
 
             // Setup the timer
-            timer.Interval = 80; // milliseconds
+            timer.Interval = 50; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer not running
         }
@@ -173,7 +173,7 @@ namespace GOL
             this.Close();
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void startToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = true;
         }
@@ -181,6 +181,7 @@ namespace GOL
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
+            //Enabled = !Enabled;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)

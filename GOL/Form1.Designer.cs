@@ -43,6 +43,7 @@ namespace GOL
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,7 @@ namespace GOL
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.playToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.startToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.pauseToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.nextToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -153,22 +154,30 @@ namespace GOL
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customizeToolStripMenuItem,
-            this.optionsToolStripMenuItem});
+            this.optionsToolStripMenuItem,
+            this.nextToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.toolsToolStripMenuItem.Text = "&Tools";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.toolsToolStripMenuItem.Text = "&Run";
             // 
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.customizeToolStripMenuItem.Text = "&Customize";
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.customizeToolStripMenuItem.Text = "&Start";
+            this.customizeToolStripMenuItem.Click += new System.EventHandler(this.startToolStripButton_Click);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.optionsToolStripMenuItem.Text = "&Options";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.optionsToolStripMenuItem.Text = "&Pause";
+            // 
+            // nextToolStripMenuItem
+            // 
+            this.nextToolStripMenuItem.Name = "nextToolStripMenuItem";
+            this.nextToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.nextToolStripMenuItem.Text = "&Next";
             // 
             // helpToolStripMenuItem
             // 
@@ -218,7 +227,7 @@ namespace GOL
             this.openToolStripButton,
             this.saveToolStripButton,
             this.toolStripSeparator6,
-            this.playToolStripButton,
+            this.startToolStripButton,
             this.pauseToolStripButton,
             this.nextToolStripButton,
             this.helpToolStripButton});
@@ -261,15 +270,15 @@ namespace GOL
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
-            // playToolStripButton
+            // startToolStripButton
             // 
-            this.playToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.playToolStripButton.Image = global::GOL.Properties.Resources.Play;
-            this.playToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.playToolStripButton.Name = "playToolStripButton";
-            this.playToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.playToolStripButton.Text = "Play";
-            this.playToolStripButton.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.startToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.startToolStripButton.Image = global::GOL.Properties.Resources.Play;
+            this.startToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.startToolStripButton.Name = "startToolStripButton";
+            this.startToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.startToolStripButton.Text = "Start";
+            this.startToolStripButton.Click += new System.EventHandler(this.startToolStripButton_Click);
             // 
             // pauseToolStripButton
             // 
@@ -277,6 +286,7 @@ namespace GOL
             this.pauseToolStripButton.Image = global::GOL.Properties.Resources.Pause;
             this.pauseToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pauseToolStripButton.Name = "pauseToolStripButton";
+            this.pauseToolStripButton.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.pauseToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.pauseToolStripButton.Text = "Pause";
             this.pauseToolStripButton.Click += new System.EventHandler(this.toolStripButton2_Click);
@@ -380,9 +390,10 @@ namespace GOL
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelGenerations;
-        private System.Windows.Forms.ToolStripButton playToolStripButton;
+        private System.Windows.Forms.ToolStripButton startToolStripButton;
         private System.Windows.Forms.ToolStripButton pauseToolStripButton;
         private System.Windows.Forms.ToolStripButton nextToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem nextToolStripMenuItem;
     }
 }
 
