@@ -18,6 +18,7 @@ namespace GOL
         // Drawing colors
         Color gridColor = Color.LightGray;
         Color cellColor = Color.DarkMagenta;
+        Color backColor = Color.White;
 
         // The Timer class
         Timer timer = new Timer();
@@ -127,6 +128,9 @@ namespace GOL
             // A Brush for filling living cells interiors (color)
             Brush cellBrush = new SolidBrush(cellColor);
 
+            //A brush for filling the dead cells
+            Brush backBrush = new SolidBrush(backColor);
+
             // Iterate through the universe in the y, top to bottom
             for (int y = 0; y < universe.GetLength(1); y++)
             {
@@ -145,6 +149,10 @@ namespace GOL
                     {
                         e.Graphics.FillRectangle(cellBrush, cellRect);
                         cells++;
+                    }
+                    else
+                    {
+                        e.Graphics.FillRectangle(backBrush, cellRect);
                     }
 
                     // Outline the cell with a pen
@@ -257,5 +265,10 @@ namespace GOL
             FillRandom(r);
         }
         #endregion
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
