@@ -33,13 +33,13 @@ namespace GOL
             this.cancelButton = new System.Windows.Forms.Button();
             this.intervalNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.intervalLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.widthLabel = new System.Windows.Forms.Label();
+            this.widthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.heightLabel = new System.Windows.Forms.Label();
+            this.heightNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.intervalNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.widthNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heightNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // okButton
@@ -65,6 +65,11 @@ namespace GOL
             // intervalNumericUpDown
             // 
             this.intervalNumericUpDown.Location = new System.Drawing.Point(254, 54);
+            this.intervalNumericUpDown.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
             this.intervalNumericUpDown.Name = "intervalNumericUpDown";
             this.intervalNumericUpDown.Size = new System.Drawing.Size(85, 20);
             this.intervalNumericUpDown.TabIndex = 2;
@@ -79,49 +84,79 @@ namespace GOL
             this.intervalLabel.Text = "Milliseconds between generations";
             this.intervalLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label1
+            // widthLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(103, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Width of the Universe in cells";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.widthLabel.AutoSize = true;
+            this.widthLabel.Location = new System.Drawing.Point(103, 82);
+            this.widthLabel.Name = "widthLabel";
+            this.widthLabel.Size = new System.Drawing.Size(145, 13);
+            this.widthLabel.TabIndex = 5;
+            this.widthLabel.Text = "Width of the Universe in cells";
+            this.widthLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // numericUpDown1
+            // widthNumericUpDown
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(254, 80);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(85, 20);
-            this.numericUpDown1.TabIndex = 4;
+            this.widthNumericUpDown.Location = new System.Drawing.Point(254, 80);
+            this.widthNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.widthNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.widthNumericUpDown.Name = "widthNumericUpDown";
+            this.widthNumericUpDown.Size = new System.Drawing.Size(85, 20);
+            this.widthNumericUpDown.TabIndex = 4;
+            this.widthNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // label2
+            // heightLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(100, 108);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(148, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Height of the Universe in cells";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.heightLabel.AutoSize = true;
+            this.heightLabel.Location = new System.Drawing.Point(100, 108);
+            this.heightLabel.Name = "heightLabel";
+            this.heightLabel.Size = new System.Drawing.Size(148, 13);
+            this.heightLabel.TabIndex = 7;
+            this.heightLabel.Text = "Height of the Universe in cells";
+            this.heightLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // numericUpDown2
+            // heightNumericUpDown
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(254, 106);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(85, 20);
-            this.numericUpDown2.TabIndex = 6;
+            this.heightNumericUpDown.Location = new System.Drawing.Point(254, 106);
+            this.heightNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.heightNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.heightNumericUpDown.Name = "heightNumericUpDown";
+            this.heightNumericUpDown.Size = new System.Drawing.Size(85, 20);
+            this.heightNumericUpDown.TabIndex = 6;
+            this.heightNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // OptionsModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(373, 289);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.heightLabel);
+            this.Controls.Add(this.heightNumericUpDown);
+            this.Controls.Add(this.widthLabel);
+            this.Controls.Add(this.widthNumericUpDown);
             this.Controls.Add(this.intervalLabel);
             this.Controls.Add(this.intervalNumericUpDown);
             this.Controls.Add(this.cancelButton);
@@ -135,8 +170,8 @@ namespace GOL
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Options Modal";
             ((System.ComponentModel.ISupportInitialize)(this.intervalNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.widthNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heightNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,9 +183,9 @@ namespace GOL
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.NumericUpDown intervalNumericUpDown;
         private System.Windows.Forms.Label intervalLabel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label widthLabel;
+        private System.Windows.Forms.NumericUpDown widthNumericUpDown;
+        private System.Windows.Forms.Label heightLabel;
+        private System.Windows.Forms.NumericUpDown heightNumericUpDown;
     }
 }

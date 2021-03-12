@@ -325,14 +325,19 @@ namespace GOL
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OptionsModal o = new OptionsModal();
-            //timer.Interval
             //timer interval
+            o.Interval = timer.Interval;
             //width
+            o.Width = universe.GetLength(0);
             //height
+            o.Height = universe.GetLength(1);
 
             if (DialogResult.OK == o.ShowDialog())
             {
+                timer.Interval = o.Interval;
+                universe = new bool[o.Width, o.Height];
 
+                graphicsPanel1.Invalidate();
             }
         }
     }

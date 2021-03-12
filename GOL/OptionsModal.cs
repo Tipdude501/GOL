@@ -17,6 +17,43 @@ namespace GOL
             InitializeComponent();
         }
 
+        //property for time interval value in numericUpDown
+        public int Interval 
+        {
+            get
+            {
+                return (int)intervalNumericUpDown.Value;
+            }
+            set
+            {
+                intervalNumericUpDown.Value = value;
+            }
+        }
 
+        //poperty for width value in numericUpDown
+        public int Width
+        {
+            get
+            {
+                return (int)widthNumericUpDown.Value;
+            }
+            set
+            {
+                widthNumericUpDown.Value = value;
+            }
+        }
+
+        //poperty for height value in numericUpDown
+        public int Height
+        {
+            get
+            {
+                return (int)heightNumericUpDown.Value;
+            }
+            set
+            {
+                heightNumericUpDown.Value = value;
+            }
+        }
     }
 }
