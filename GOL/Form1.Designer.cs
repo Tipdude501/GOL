@@ -341,6 +341,7 @@ namespace GOL
             this.lineColorToolStripMenuItem.Name = "lineColorToolStripMenuItem";
             this.lineColorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lineColorToolStripMenuItem.Text = "Line Color";
+            this.lineColorToolStripMenuItem.Click += new System.EventHandler(this.lineColorToolStripMenuItem_Click);
             // 
             // cellColorToolStripMenuItem
             // 

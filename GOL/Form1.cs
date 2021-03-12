@@ -264,7 +264,6 @@ namespace GOL
 
             FillRandom(r);
         }
-        #endregion
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -283,5 +282,19 @@ namespace GOL
                 graphicsPanel1.Invalidate();
             }
         }
+
+        //option to change line color
+        private void lineColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog c = new ColorDialog();
+            c.Color = gridColor;
+
+            if (DialogResult.OK == c.ShowDialog())
+            {
+                gridColor = c.Color;
+                graphicsPanel1.Invalidate();
+            }
+        }
+        #endregion
     }
 }
