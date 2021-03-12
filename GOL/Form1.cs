@@ -270,5 +270,18 @@ namespace GOL
         {
 
         }
+
+        //option to change background color
+        private void backColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog c = new ColorDialog();
+            c.Color = backColor;
+
+            if (DialogResult.OK == c.ShowDialog())
+            {
+                backColor = c.Color;
+                graphicsPanel1.Invalidate();
+            }
+        }
     }
 }
