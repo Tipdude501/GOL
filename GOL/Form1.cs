@@ -29,6 +29,9 @@ namespace GOL
         //Number of living cells
         int cells = 0;
 
+        //Current seed
+        int seed = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -168,9 +171,10 @@ namespace GOL
             cellBrush.Dispose();
         }
         
-        //Randomly fills the universe with living cells
-        private void FillRandom(Random r)
+        //Randomly fills the universe with living cells using the value of seed as its seed
+        private void FillRandom()
         {
+            Random r = new Random(seed);
             bool[,] scratchpad = new bool[universe.GetLength(0), universe.GetLength(1)];
 
             for (int y = 0; y < universe.GetLength(1); y++)
@@ -260,9 +264,8 @@ namespace GOL
         //seed from current time click event
         private void seedFromCurrentTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Random r = new Random((int)DateTime.Now.Ticks);
-
-            FillRandom(r);
+            seed = (int)DateTime.Now.Ticks;
+            FillRandom();
         }
 
         //option to change background color
