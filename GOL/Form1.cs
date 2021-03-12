@@ -172,7 +172,7 @@ namespace GOL
         }
         
         //Randomly fills the universe with living cells using the value of seed as its seed
-        private void FillRandom()
+        private void FillUniverseRandom()
         {
             Random r = new Random(seed);
             bool[,] scratchpad = new bool[universe.GetLength(0), universe.GetLength(1)];
@@ -265,7 +265,22 @@ namespace GOL
         private void seedFromCurrentTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             seed = (int)DateTime.Now.Ticks;
-            FillRandom();
+            FillUniverseRandom();
+        }
+
+        //seed from custom seed click event
+        private void fromSeedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SeedDialog s = new SeedDialog();
+            s.Seed = seed;
+
+            if (DialogResult.OK == s.ShowDialog())
+            {
+                seed = s.Seed;
+                graphicsPanel1.Invalidate();
+            }
+
+            FillUniverseRandom();
         }
 
         //option to change background color
@@ -305,7 +320,7 @@ namespace GOL
                 cellColor = c.Color;
                 graphicsPanel1.Invalidate();
             }
-        }
+        } 
         #endregion
     }
 }
