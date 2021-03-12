@@ -278,9 +278,8 @@ namespace GOL
             {
                 seed = s.Seed;
                 graphicsPanel1.Invalidate();
+                FillUniverseRandom();
             }
-
-            FillUniverseRandom();
         }
 
         //option to change background color
@@ -320,7 +319,21 @@ namespace GOL
                 cellColor = c.Color;
                 graphicsPanel1.Invalidate();
             }
-        } 
+        }
         #endregion
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OptionsModal o = new OptionsModal();
+            //timer.Interval
+            //timer interval
+            //width
+            //height
+
+            if (DialogResult.OK == o.ShowDialog())
+            {
+
+            }
+        }
     }
 }
