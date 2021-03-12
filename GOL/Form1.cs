@@ -108,8 +108,8 @@ namespace GOL
             }
             return count;
         }
-
-        //Called every time WM_PAINT message if received
+        
+        //paint event
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
             //reset living cell count
@@ -159,8 +159,29 @@ namespace GOL
             gridPen.Dispose();
             cellBrush.Dispose();
         }
+        
+        //Randomly fills the universe with living cells
+        private void FillRandom(Random r)
+        {
+            bool[,] scratchpad = new bool[universe.GetLength(0), universe.GetLength(1)];
 
-        //Click event on the graphics panel
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    //randomaly wake the cell
+                    int state = r.Next(0, 2);
+                    if (state == 0) scratchpad[x, y] = true;
+                    else scratchpad[x, y] = false;
+                }
+            }
+            universe = scratchpad;
+
+            graphicsPanel1.Invalidate();
+        }
+        
+        #region Click Events
+        //graphics panel click event
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
         {
             // If the left mouse button was clicked
@@ -228,9 +249,13 @@ namespace GOL
             graphicsPanel1.Invalidate();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        //seed from current time click event
+        private void seedFromCurrentTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Random r = new Random((int)DateTime.Now.Ticks);
 
+            FillRandom(r);
         }
+        #endregion
     }
 }

@@ -57,8 +57,9 @@ namespace GOL
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
-            this.graphicsPanel1 = new GOL.GraphicsPanel();
             this.toolStripStatusLabelLivingCells = new System.Windows.Forms.ToolStripStatusLabel();
+            this.graphicsPanel1 = new GOL.GraphicsPanel();
+            this.seedFromCurrentTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -182,6 +183,8 @@ namespace GOL
             // 
             // randomizeToolStripMenuItem
             // 
+            this.randomizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.seedFromCurrentTimeToolStripMenuItem});
             this.randomizeToolStripMenuItem.Name = "randomizeToolStripMenuItem";
             this.randomizeToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.randomizeToolStripMenuItem.Text = "&Randomize";
@@ -295,6 +298,12 @@ namespace GOL
             this.toolStripStatusLabelGenerations.Size = new System.Drawing.Size(90, 17);
             this.toolStripStatusLabelGenerations.Text = "Generations = 0";
             // 
+            // toolStripStatusLabelLivingCells
+            // 
+            this.toolStripStatusLabelLivingCells.Name = "toolStripStatusLabelLivingCells";
+            this.toolStripStatusLabelLivingCells.Size = new System.Drawing.Size(87, 17);
+            this.toolStripStatusLabelLivingCells.Text = "Living Cells = 0";
+            // 
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
@@ -306,11 +315,12 @@ namespace GOL
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
             // 
-            // toolStripStatusLabelLivingCells
+            // seedFromCurrentTimeToolStripMenuItem
             // 
-            this.toolStripStatusLabelLivingCells.Name = "toolStripStatusLabelLivingCells";
-            this.toolStripStatusLabelLivingCells.Size = new System.Drawing.Size(87, 17);
-            this.toolStripStatusLabelLivingCells.Text = "Living Cells = 0";
+            this.seedFromCurrentTimeToolStripMenuItem.Name = "seedFromCurrentTimeToolStripMenuItem";
+            this.seedFromCurrentTimeToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.seedFromCurrentTimeToolStripMenuItem.Text = "Seed from current time";
+            this.seedFromCurrentTimeToolStripMenuItem.Click += new System.EventHandler(this.seedFromCurrentTimeToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -324,7 +334,6 @@ namespace GOL
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Game Of Life - Reilly da Silva";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -367,6 +376,7 @@ namespace GOL
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelLivingCells;
+        private System.Windows.Forms.ToolStripMenuItem seedFromCurrentTimeToolStripMenuItem;
     }
 }
 
