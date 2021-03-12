@@ -265,11 +265,6 @@ namespace GOL
             FillRandom(r);
         }
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //option to change background color
         private void backColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -283,7 +278,7 @@ namespace GOL
             }
         }
 
-        //option to change line color
+        //option to change grid color
         private void lineColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog c = new ColorDialog();
@@ -292,6 +287,19 @@ namespace GOL
             if (DialogResult.OK == c.ShowDialog())
             {
                 gridColor = c.Color;
+                graphicsPanel1.Invalidate();
+            }
+        }
+
+        //option to change cell color
+        private void cellColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog c = new ColorDialog();
+            c.Color = cellColor;
+
+            if (DialogResult.OK == c.ShowDialog())
+            {
+                cellColor = c.Color;
                 graphicsPanel1.Invalidate();
             }
         }
