@@ -41,6 +41,7 @@ namespace GOL
         // Calculate the next generation of cells
         private void NextGeneration()
         {
+            //Scratchpad array to draw next generation on
             bool[,] scratchpad = new bool[universe.GetLength(0), universe.GetLength(1)];
 
             // Iterate through the universe in the y, top to bottom
@@ -58,9 +59,13 @@ namespace GOL
                 }
             }
 
+            //copy scratchpad over to universe
             universe = scratchpad;
+
+            //iterate generations
             generations++;
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            
             graphicsPanel1.Invalidate();
         }
 
@@ -104,7 +109,7 @@ namespace GOL
             return count;
         }
 
-
+        //Called every time WM_PAINT message if received
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
             //reset living cell count
@@ -155,11 +160,13 @@ namespace GOL
             cellBrush.Dispose();
         }
 
+        //Click event on the graphics panel
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
         {
             // If the left mouse button was clicked
             if (e.Button == MouseButtons.Left)
             {
+                //calculate cell sizes
                 float cellWidth = (float)(graphicsPanel1.ClientSize.Width - 1) / universe.GetLength(0);
                 float cellHeight = (float)(graphicsPanel1.ClientSize.Height - 1) / universe.GetLength(1);
 
@@ -182,26 +189,31 @@ namespace GOL
             }
         }
 
+        //Exit menu item click event
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //start tool strip button click event
         private void startToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = true;
         }
 
+        //pause tool strip button click event
         private void pauseToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
         }
 
+        //next tool strip button click event
         private void nextToolStripButton_Click(object sender, EventArgs e)
         {
             NextGeneration();
         }
 
+        //new toolstrip button click event
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //set all the cells in the universe to false
