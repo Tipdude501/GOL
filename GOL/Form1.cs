@@ -25,6 +25,9 @@ namespace GOL
         // Generation count
         int generations = 0;
 
+        //Number of living cells
+        int cells = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -67,24 +70,34 @@ namespace GOL
             NextGeneration();
         }
 
+        //Counts the number of living neighbors of a given cell
         private int CountNeighborsToroidal(int x, int y)
         {
+            //Neigbor count
             int count = 0;
+            //Universe bounds
             int xLen = universe.GetLength(0);
             int yLen = universe.GetLength(1);
 
+            //Iterate through the adjacent cells
             for (int yOffset = -1; yOffset <= 1; yOffset++)
             {
                 for (int xOffset = -1; xOffset <= 1; xOffset++)
                 {
+                    //getting coordinates for given adjacent cell
                     int xCheck = x + xOffset;
                     int yCheck = y + yOffset;
 
+                    //ignore if this is the origianl cell
                     if (xOffset == 0 && yOffset == 0) continue;
+
+                    //if past the universe bounds, wrap around to the other side
                     if (xCheck < 0) xCheck = xLen - 1;
                     if (yCheck < 0) yCheck = yLen - 1;
                     if (xCheck >= xLen) xCheck = 0;
                     if (yCheck >= yLen) yCheck = 0;
+
+                    //add to count if given adjacent cell is alive
                     if (universe[xCheck, yCheck] == true) count++;
                 }
             }
@@ -94,18 +107,14 @@ namespace GOL
 
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
+            //reset living cell count
+            cells = 0;
 
-            //FLOAT
             // Calculate the width and height of each cell in pixels
             // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
             float cellWidth = (float)(graphicsPanel1.ClientSize.Width-1) / universe.GetLength(0);
             // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
             float cellHeight = (float)(graphicsPanel1.ClientSize.Height-1) / universe.GetLength(1);
-
-            //int cellWidth = graphicsPanel1.ClientSize.Width / universe.GetLength(0);
-            //int cellHeight = graphicsPanel1.ClientSize.Height / universe.GetLength(1);
-
-
 
             // A Pen for drawing the grid lines (color, width)
             Pen gridPen = new Pen(gridColor, 1);
@@ -126,16 +135,20 @@ namespace GOL
                     cellRect.Width = cellWidth;
                     cellRect.Height = cellHeight;
 
-                    // Fill the cell with a brush if alive
+                    // Fill the cell with a brush if alive and iterate living cell count
                     if (universe[x, y] == true)
                     {
                         e.Graphics.FillRectangle(cellBrush, cellRect);
+                        cells++;
                     }
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
                 }
             }
+
+            //Update living cell count
+            toolStripStatusLabelLivingCells.Text = "Living Cells = " + cells.ToString();
 
             // Cleaning up pens and brushes
             gridPen.Dispose();
@@ -160,6 +173,11 @@ namespace GOL
                 // Toggle the cell's state
                 universe[x, y] = !universe[x, y];
 
+                //Iterate the cells count
+                if (universe[x, y] == true) cells++;
+                else cells--;
+
+                //invalidate
                 graphicsPanel1.Invalidate();
             }
         }
@@ -194,7 +212,13 @@ namespace GOL
                     universe[x, y] = false;
                 }
             }
+
             graphicsPanel1.Invalidate();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
