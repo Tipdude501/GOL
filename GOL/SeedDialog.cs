@@ -17,6 +17,7 @@ namespace GOL
             InitializeComponent();
         }
 
+        //Property for the seed value in the numericUpDown
         public int Seed
         {
             get
