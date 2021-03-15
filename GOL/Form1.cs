@@ -335,7 +335,10 @@ namespace GOL
             if (DialogResult.OK == o.ShowDialog())
             {
                 timer.Interval = o.Interval;
-                universe = new bool[o.Width, o.Height];
+                if (o.Width != universe.GetLength(0) || o.Height != universe.GetLength(1))
+                {
+                    universe = new bool[o.Width, o.Height];
+                }
 
                 graphicsPanel1.Invalidate();
             }

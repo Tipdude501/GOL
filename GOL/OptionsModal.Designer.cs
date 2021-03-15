@@ -70,9 +70,19 @@ namespace GOL
             0,
             0,
             0});
+            this.intervalNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.intervalNumericUpDown.Name = "intervalNumericUpDown";
             this.intervalNumericUpDown.Size = new System.Drawing.Size(85, 20);
             this.intervalNumericUpDown.TabIndex = 2;
+            this.intervalNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // intervalLabel
             // 
