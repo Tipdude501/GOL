@@ -320,8 +320,7 @@ namespace GOL
                 graphicsPanel1.Invalidate();
             }
         }
-        #endregion
-
+        
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OptionsModal o = new OptionsModal();
@@ -343,5 +342,8 @@ namespace GOL
                 graphicsPanel1.Invalidate();
             }
         }
+        #endregion
+
+        
     }
 }
