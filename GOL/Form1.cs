@@ -12,13 +12,21 @@ namespace GOL
 {
     public partial class Form1 : Form
     {
-        // The universe array
-        bool[,] universe = new bool[30, 30];
-
+        #region Settings Fields
         // Drawing colors
         Color gridColor;
         Color cellColor = Color.DarkMagenta;
         Color backColor = Color.White;
+        
+        //universe dimensions
+        int uWidth;
+        int uHeight;
+        #endregion
+
+
+
+        // The universe array
+        bool[,] universe;
 
         // The Timer class
         Timer timer = new Timer();
@@ -26,7 +34,7 @@ namespace GOL
         // Generation count
         int generations = 0;
 
-        //Number of living cells
+        //Number of living cells count
         int cells = 0;
 
         //Current seed
@@ -36,15 +44,20 @@ namespace GOL
         {
             InitializeComponent();
 
-            // Setup the timer
-            timer.Interval = 50; // milliseconds
-            timer.Tick += Timer_Tick;
-            timer.Enabled = false; // start timer not running
-
             //initialise settings
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
             backColor = Properties.Settings.Default.BackColor;
+            uWidth = Properties.Settings.Default.Width;
+            uHeight = Properties.Settings.Default.Height;
+
+            // Setup the timer
+            timer.Interval = Properties.Settings.Default.Interval;
+            timer.Tick += Timer_Tick;
+            timer.Enabled = false; // start timer not running
+
+            //initialize universe
+            universe = new bool[uWidth, uHeight];
         }
 
         // Calculate the next generation of cells
@@ -365,19 +378,21 @@ namespace GOL
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OptionsModal o = new OptionsModal();
-            //timer interval
             o.Interval = timer.Interval;
-            //width
-            o.Width = universe.GetLength(0);
-            //height
-            o.Height = universe.GetLength(1);
+            o.Width = uWidth;
+            o.Height = uHeight;
 
             if (DialogResult.OK == o.ShowDialog())
             {
+                //get time interval
                 timer.Interval = o.Interval;
-                if (o.Width != universe.GetLength(0) || o.Height != universe.GetLength(1))
+
+                //get universe size
+                if (o.Width != uWidth || o.Height != uHeight)
                 {
-                    universe = new bool[o.Width, o.Height];
+                    uWidth = o.Width;
+                    uHeight = o.Height;
+                    universe = new bool[uWidth, uHeight];
                 }
 
                 graphicsPanel1.Invalidate();
@@ -389,10 +404,22 @@ namespace GOL
         {
             Properties.Settings.Default.Reload();
 
-            //reassign settings
+            //reassign color
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
             backColor = Properties.Settings.Default.BackColor;
+
+            //reassign time interval
+            timer.Interval = Properties.Settings.Default.Interval;
+
+            //reassign universe size
+            if (uWidth != Properties.Settings.Default.Width || uHeight != Properties.Settings.Default.Height)
+            {
+                uWidth = Properties.Settings.Default.Width;
+                uHeight = Properties.Settings.Default.Height;
+
+                universe = new bool[uWidth, uHeight];
+            }
 
             graphicsPanel1.Invalidate();
         }
@@ -402,21 +429,37 @@ namespace GOL
         {
             Properties.Settings.Default.Reset();
 
-            //reassign settings
+            //reassign color
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
             backColor = Properties.Settings.Default.BackColor;
+
+            //reassign time interval
+            timer.Interval = Properties.Settings.Default.Interval;
+
+            //reassign universe size
+            if (uWidth != Properties.Settings.Default.Width || uHeight != Properties.Settings.Default.Height)
+            {
+                uWidth = Properties.Settings.Default.Width;
+                uHeight = Properties.Settings.Default.Height;
+
+                universe = new bool[uWidth, uHeight];
+            }
 
             graphicsPanel1.Invalidate();
         }
         #endregion
 
+        //form closed event
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             //update settings
             Properties.Settings.Default.GridColor = gridColor;
             Properties.Settings.Default.CellColor = cellColor;
             Properties.Settings.Default.BackColor = backColor;
+            Properties.Settings.Default.Interval = timer.Interval;
+            Properties.Settings.Default.Width = uWidth;
+            Properties.Settings.Default.Height = uHeight;
 
             //save settings
             Properties.Settings.Default.Save();
