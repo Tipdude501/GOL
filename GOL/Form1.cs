@@ -12,21 +12,13 @@ namespace GOL
 {
     public partial class Form1 : Form
     {
-        #region Settings Fields
+         // The universe array
+        bool[,] universe;
+        
         // Drawing colors
         Color gridColor;
         Color cellColor = Color.DarkMagenta;
         Color backColor = Color.White;
-        
-        //universe dimensions
-        int uWidth;
-        int uHeight;
-        #endregion
-
-
-
-        // The universe array
-        bool[,] universe;
 
         // The Timer class
         Timer timer = new Timer();
@@ -48,8 +40,6 @@ namespace GOL
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
             backColor = Properties.Settings.Default.BackColor;
-            uWidth = Properties.Settings.Default.Width;
-            uHeight = Properties.Settings.Default.Height;
 
             // Setup the timer
             timer.Interval = Properties.Settings.Default.Interval;
@@ -57,7 +47,7 @@ namespace GOL
             timer.Enabled = false; // start timer not running
 
             //initialize universe
-            universe = new bool[uWidth, uHeight];
+            universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
         }
 
         // Calculate the next generation of cells
@@ -379,8 +369,8 @@ namespace GOL
         {
             OptionsModal o = new OptionsModal();
             o.Interval = timer.Interval;
-            o.Width = uWidth;
-            o.Height = uHeight;
+            o.Width = universe.GetLength(0);
+            o.Height = universe.GetLength(1);
 
             if (DialogResult.OK == o.ShowDialog())
             {
@@ -388,11 +378,9 @@ namespace GOL
                 timer.Interval = o.Interval;
 
                 //get universe size
-                if (o.Width != uWidth || o.Height != uHeight)
+                if (o.Width != universe.GetLength(0) || o.Height != universe.GetLength(1))
                 {
-                    uWidth = o.Width;
-                    uHeight = o.Height;
-                    universe = new bool[uWidth, uHeight];
+                    universe = new bool[o.Width, o.Height];
                 }
 
                 graphicsPanel1.Invalidate();
@@ -413,12 +401,9 @@ namespace GOL
             timer.Interval = Properties.Settings.Default.Interval;
 
             //reassign universe size
-            if (uWidth != Properties.Settings.Default.Width || uHeight != Properties.Settings.Default.Height)
+            if (universe.GetLength(0) != Properties.Settings.Default.Width || universe.GetLength(1) != Properties.Settings.Default.Height)
             {
-                uWidth = Properties.Settings.Default.Width;
-                uHeight = Properties.Settings.Default.Height;
-
-                universe = new bool[uWidth, uHeight];
+                universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             }
 
             graphicsPanel1.Invalidate();
@@ -438,12 +423,9 @@ namespace GOL
             timer.Interval = Properties.Settings.Default.Interval;
 
             //reassign universe size
-            if (uWidth != Properties.Settings.Default.Width || uHeight != Properties.Settings.Default.Height)
+            if (universe.GetLength(0) != Properties.Settings.Default.Width || universe.GetLength(1) != Properties.Settings.Default.Height)
             {
-                uWidth = Properties.Settings.Default.Width;
-                uHeight = Properties.Settings.Default.Height;
-
-                universe = new bool[uWidth, uHeight];
+                universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             }
 
             graphicsPanel1.Invalidate();
@@ -458,8 +440,8 @@ namespace GOL
             Properties.Settings.Default.CellColor = cellColor;
             Properties.Settings.Default.BackColor = backColor;
             Properties.Settings.Default.Interval = timer.Interval;
-            Properties.Settings.Default.Width = uWidth;
-            Properties.Settings.Default.Height = uHeight;
+            Properties.Settings.Default.Width = universe.GetLength(0);
+            Properties.Settings.Default.Height = universe.GetLength(1);
 
             //save settings
             Properties.Settings.Default.Save();
