@@ -65,10 +65,10 @@ namespace GOL
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelLivingCells = new System.Windows.Forms.ToolStripStatusLabel();
-            this.graphicsPanel1 = new GOL.GraphicsPanel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.reloadPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetToDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.graphicsPanel1 = new GOL.GraphicsPanel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -202,14 +202,14 @@ namespace GOL
             // fromTimeToolStripMenuItem
             // 
             this.fromTimeToolStripMenuItem.Name = "fromTimeToolStripMenuItem";
-            this.fromTimeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fromTimeToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.fromTimeToolStripMenuItem.Text = "From time";
             this.fromTimeToolStripMenuItem.Click += new System.EventHandler(this.seedFromCurrentTimeToolStripMenuItem_Click);
             // 
             // fromSeedToolStripMenuItem
             // 
             this.fromSeedToolStripMenuItem.Name = "fromSeedToolStripMenuItem";
-            this.fromSeedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fromSeedToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.fromSeedToolStripMenuItem.Text = "From seed";
             this.fromSeedToolStripMenuItem.Click += new System.EventHandler(this.fromSeedToolStripMenuItem_Click);
             // 
@@ -239,7 +239,7 @@ namespace GOL
             // 
             this.lineColorToolStripMenuItem.Name = "lineColorToolStripMenuItem";
             this.lineColorToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.lineColorToolStripMenuItem.Text = "Line Color";
+            this.lineColorToolStripMenuItem.Text = "Grid Color";
             this.lineColorToolStripMenuItem.Click += new System.EventHandler(this.lineColorToolStripMenuItem_Click);
             // 
             // cellColorToolStripMenuItem
@@ -370,17 +370,6 @@ namespace GOL
             this.toolStripStatusLabelLivingCells.Size = new System.Drawing.Size(87, 17);
             this.toolStripStatusLabelLivingCells.Text = "Living Cells = 0";
             // 
-            // graphicsPanel1
-            // 
-            this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
-            this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphicsPanel1.Location = new System.Drawing.Point(0, 49);
-            this.graphicsPanel1.Name = "graphicsPanel1";
-            this.graphicsPanel1.Size = new System.Drawing.Size(684, 590);
-            this.graphicsPanel1.TabIndex = 3;
-            this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
-            this.graphicsPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -391,12 +380,25 @@ namespace GOL
             this.reloadPreviousToolStripMenuItem.Name = "reloadPreviousToolStripMenuItem";
             this.reloadPreviousToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.reloadPreviousToolStripMenuItem.Text = "Reload (To Previous)";
+            this.reloadPreviousToolStripMenuItem.Click += new System.EventHandler(this.reloadPreviousToolStripMenuItem_Click);
             // 
             // resetToDefaultToolStripMenuItem
             // 
             this.resetToDefaultToolStripMenuItem.Name = "resetToDefaultToolStripMenuItem";
             this.resetToDefaultToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.resetToDefaultToolStripMenuItem.Text = "Reset (To Default)";
+            this.resetToDefaultToolStripMenuItem.Click += new System.EventHandler(this.resetToDefaultToolStripMenuItem_Click);
+            // 
+            // graphicsPanel1
+            // 
+            this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
+            this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphicsPanel1.Location = new System.Drawing.Point(0, 49);
+            this.graphicsPanel1.Name = "graphicsPanel1";
+            this.graphicsPanel1.Size = new System.Drawing.Size(684, 590);
+            this.graphicsPanel1.TabIndex = 3;
+            this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
+            this.graphicsPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
             // 
             // Form1
             // 
@@ -410,6 +412,7 @@ namespace GOL
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Game Of Life - Reilly da Silva";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

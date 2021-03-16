@@ -16,7 +16,7 @@ namespace GOL
         bool[,] universe = new bool[30, 30];
 
         // Drawing colors
-        Color gridColor = Color.LightGray;
+        Color gridColor;
         Color cellColor = Color.DarkMagenta;
         Color backColor = Color.White;
 
@@ -40,6 +40,11 @@ namespace GOL
             timer.Interval = 50; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer not running
+
+            //initialise settings
+            gridColor = Properties.Settings.Default.GridColor;
+            cellColor = Properties.Settings.Default.CellColor;
+            backColor = Properties.Settings.Default.BackColor;
         }
 
         // Calculate the next generation of cells
@@ -356,6 +361,7 @@ namespace GOL
             }
         }
         
+        //open options modal
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OptionsModal o = new OptionsModal();
@@ -377,8 +383,43 @@ namespace GOL
                 graphicsPanel1.Invalidate();
             }
         }
+
+        //reload previous settings
+        private void reloadPreviousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reload();
+
+            //reassign settings
+            gridColor = Properties.Settings.Default.GridColor;
+            cellColor = Properties.Settings.Default.CellColor;
+            backColor = Properties.Settings.Default.BackColor;
+
+            graphicsPanel1.Invalidate();
+        }
+
+        //reset default settings
+        private void resetToDefaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reset();
+
+            //reassign settings
+            gridColor = Properties.Settings.Default.GridColor;
+            cellColor = Properties.Settings.Default.CellColor;
+            backColor = Properties.Settings.Default.BackColor;
+
+            graphicsPanel1.Invalidate();
+        }
         #endregion
 
-        
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //update settings
+            Properties.Settings.Default.GridColor = gridColor;
+            Properties.Settings.Default.CellColor = cellColor;
+            Properties.Settings.Default.BackColor = backColor;
+
+            //save settings
+            Properties.Settings.Default.Save();
+        }
     }
 }
