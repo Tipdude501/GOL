@@ -79,7 +79,7 @@ namespace GOL
             NextGeneration();
         }
 
-        //Counts the number of living neighbors of a given cell
+        //Counts the number of living neighbors of a given cell, treating the esges like they wrap around
         private int CountNeighborsToroidal(int x, int y)
         {
             //Neigbor count
@@ -112,7 +112,42 @@ namespace GOL
             }
             return count;
         }
-        
+
+        //Counts the number of living neighbors of a given cell, not wrapping around the edges
+        private int CountNeighborsFinite(int x, int y)
+        {
+            //Neigbor count
+            int count = 0;
+            //Universe bounds
+            int xLen = universe.GetLength(0);
+            int yLen = universe.GetLength(1);
+
+            //Iterate through the adjacent cells
+            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            {
+                for (int xOffset = -1; xOffset <= 1; xOffset++)
+                {
+                    //getting coordinates for given adjacent cell
+                    int xCheck = x + xOffset;
+                    int yCheck = y + yOffset;
+
+                    //ignore if this is the origianl cell
+                    if (xOffset == 0 && yOffset == 0) continue;
+
+                    //ignore if past the universe bounds
+                    if (xCheck < 0) continue;
+                    if (yCheck < 0) continue;
+                    if (xCheck >= xLen) continue;
+                    if (yCheck >= yLen) continue;
+
+                    //add to count if given adjacent cell is alive
+                    if (universe[xCheck, yCheck] == true) count++;
+
+                }
+            }
+            return count;
+        }
+
         //paint event
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
