@@ -17,8 +17,8 @@ namespace GOL
         
         // Drawing colors
         Color gridColor;
-        Color cellColor = Color.DarkMagenta;
-        Color backColor = Color.White;
+        Color cellColor;
+        Color backColor;
 
         // The Timer class
         Timer timer = new Timer();
