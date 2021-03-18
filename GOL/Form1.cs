@@ -181,17 +181,37 @@ namespace GOL
                         e.Graphics.FillRectangle(backBrush, cellRect);
                     }
 
-                    Font font = new Font("Arial", 20f);
 
-                    StringFormat stringFormat = new StringFormat();
-                    stringFormat.Alignment = StringAlignment.Center;
-                    stringFormat.LineAlignment = StringAlignment.Center;
+                    //show neighbor count
+                    if (CountNeighbors(x, y) > 0)
+                    {
+                        //calculate font size based on cell size
+                        float fontSize = cellHeight - 10;
+                        if (fontSize < 7)
+                        {
+                            fontSize = cellHeight - 5;
+                        }
+                        if (fontSize < 7)
+                        {
+                            fontSize = cellHeight - 2;
+                        }
+                        if (fontSize < 7)
+                        {
+                            fontSize = cellHeight;
+                        }
 
-                    Rectangle rect = new Rectangle(0, 0, 100, 100);
-                    int neighbors = 8;
+                        //font for neighbor count
+                        Font font = new Font("Arial", fontSize);
 
-                    //neighbor count
-                    e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, stringFormat);
+                        //format text in the center of the cell
+                        StringFormat stringFormat = new StringFormat();
+                        stringFormat.Alignment = StringAlignment.Center;
+                        stringFormat.LineAlignment = StringAlignment.Center;
+
+                        //neighbor count
+                        e.Graphics.DrawString(CountNeighbors(x, y).ToString(), font, Brushes.Black, cellRect, stringFormat);
+                    }
+
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
