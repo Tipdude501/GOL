@@ -25,7 +25,6 @@ namespace GOL
 
         // Status strip items
         int generations = 0;
-        int cells = 0;
 
         //Current seed
         int seed = 0;
@@ -33,6 +32,7 @@ namespace GOL
         //View menu items
         bool showGrid = true;
         bool showNeighborCount = true;
+        bool showHUD = true;
         bool isToroidal = true;
 
 
@@ -140,22 +140,13 @@ namespace GOL
         //paint event
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
-            //reset living cell count
-            cells = 0;
-
             // Calculate the width and height of each cell in pixels
-            // CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
             float cellWidth = (float)(graphicsPanel1.ClientSize.Width-1) / universe.GetLength(0);
-            // CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
             float cellHeight = (float)(graphicsPanel1.ClientSize.Height-1) / universe.GetLength(1);
 
-            // A Pen for drawing the grid lines (color, width)
+            // Graphics objects
             Pen gridPen = new Pen(gridColor, 1);
-
-            // A Brush for filling living cells interiors (color)
             Brush cellBrush = new SolidBrush(cellColor);
-
-            //A brush for filling the dead cells
             Brush backBrush = new SolidBrush(backColor);
 
             // Iterate through the universe in the y, top to bottom
@@ -171,11 +162,10 @@ namespace GOL
                     cellRect.Width = cellWidth;
                     cellRect.Height = cellHeight;
 
-                    // Fill the cell with a brush if alive and iterate living cell count
+                    // Fill the cell with a brush if alive
                     if (universe[x, y] == true)
                     {
                         e.Graphics.FillRectangle(cellBrush, cellRect);
-                        cells++;
                     }
                     else
                     {
@@ -219,8 +209,24 @@ namespace GOL
                 }
             }
 
+            //Draw HUD
+            if (showHUD)
+            {
+                Font font = new Font("Arial", 20f);
+
+                StringFormat stringFormat = new StringFormat();
+                stringFormat.Alignment = StringAlignment.Near;
+                stringFormat.LineAlignment = StringAlignment.Far;
+
+                Rectangle rect = new Rectangle(0, 0, 100, 100);
+                int neighbors = 8;
+
+                e.Graphics.DrawString("Test Message", font, Brushes.Black, graphicsPanel1.ClientRectangle, stringFormat);
+            }
+
+
             //Update living cell count
-            toolStripStatusLabelLivingCells.Text = "Living Cells = " + cells.ToString();
+            toolStripStatusLabelLivingCells.Text = "Living Cells = " + CellCount();
 
             // Cleaning up pens and brushes
             gridPen.Dispose();
@@ -247,6 +253,24 @@ namespace GOL
 
             graphicsPanel1.Invalidate();
         }
+
+        //returns the current number of living cells in the universe
+        private int CellCount()
+        {
+            int count = 0;
+
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if (universe[x, y] == true)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
         
         #region Click Events
         //graphics panel click event
@@ -268,10 +292,6 @@ namespace GOL
 
                 // Toggle the cell's state
                 universe[x, y] = !universe[x, y];
-
-                //Iterate the cells count
-                if (universe[x, y] == true) cells++;
-                else cells--;
 
                 //invalidate
                 graphicsPanel1.Invalidate();
