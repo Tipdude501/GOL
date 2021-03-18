@@ -484,8 +484,14 @@ namespace GOL
         private void toggleBoundaryBehavior_Click(object sender, EventArgs e)
         {
             isToroidal = !isToroidal;
+
+            //Menu bar items
             toroidalToolStripMenuItem.Checked = !toroidalToolStripMenuItem.Checked;
             finiteToolStripMenuItem.Checked = !finiteToolStripMenuItem.Checked;
+            //Context-sensitive menu item
+            toroidalToolStripMenuItem1.Checked = !toroidalToolStripMenuItem1.Checked;
+            finiteToolStripMenuItem1.Checked = !finiteToolStripMenuItem1.Checked;
+
             graphicsPanel1.Invalidate();
         }
 
@@ -493,7 +499,12 @@ namespace GOL
         private void neighborCountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showNeighborCount = !showNeighborCount;
+
+            //Menu bar item
             neighborCountToolStripMenuItem.Checked = !neighborCountToolStripMenuItem.Checked;
+            //Context-sensitive menu item
+            neighborCountToolStripMenuItem1.Checked = !neighborCountToolStripMenuItem1.Checked;
+
             graphicsPanel1.Invalidate();
         }
         
@@ -501,7 +512,12 @@ namespace GOL
         private void gridToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showGrid = !showGrid;
+
+            //Menu bar item
             gridToolStripMenuItem.Checked = !gridToolStripMenuItem.Checked;
+            //Context-sensitive menu item
+            gridToolStripMenuItem1.Checked = !gridToolStripMenuItem1.Checked;
+
             graphicsPanel1.Invalidate();
         }
         
@@ -509,7 +525,12 @@ namespace GOL
         private void hUDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showHUD = !showHUD;
+
+            //Menu bar item
             hUDToolStripMenuItem.Checked = !hUDToolStripMenuItem.Checked;
+            //Context-sensitive menu item
+            hUDToolStripMenuItem1.Checked = !hUDToolStripMenuItem1.Checked;
+
             graphicsPanel1.Invalidate();
         }
         #endregion
