@@ -36,6 +36,9 @@ namespace GOL
         bool showHUD = true;
         bool isToroidal = true;
 
+        //File name
+        string fileName = string.Empty;
+
 
         public Form1()
         {
@@ -309,33 +312,46 @@ namespace GOL
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                StreamWriter writer = new StreamWriter(dlg.FileName);
+                fileName = dlg.FileName;
+                Save();
+            }
+        }
 
-                //comments
-                writer.WriteLine("!Universe saved at: " + DateTime.Now);
+        //Save
+        private void Save()
+        {
+            //check if file has a name
+            if(fileName == string.Empty || fileName == null)
+            {
+                SaveAs();
+                return;
+            }
 
-                //write out data
-                for (int y = 0; y < universe.GetLength(1); y++)
+            StreamWriter writer = new StreamWriter(fileName);
+
+            //comments
+            writer.WriteLine("!Universe saved at: " + DateTime.Now);
+
+            //write out data
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                String row = string.Empty;
+
+                for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    String row = string.Empty;
-
-                    for (int x = 0; x < universe.GetLength(0); x++)
+                    if (universe[x, y])
                     {
-                        if (universe[x, y])
-                        {
-                            row += "O";
-                            continue;
-                        }
-
-                        row += ".";
+                        row += "O";
+                        continue;
                     }
 
-                    writer.WriteLine(row);
+                    row += ".";
                 }
-                
-                // After all rows and columns have been written then close the file.
-                writer.Close();
+
+                writer.WriteLine(row);
             }
+
+            writer.Close();
         }
 
         #region Click Events
@@ -579,6 +595,12 @@ namespace GOL
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveAs();
+        }
+        
+        //Save click event
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Save();
         }
         #endregion
 
