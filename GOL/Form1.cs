@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -269,6 +270,7 @@ namespace GOL
             return count;
         }
 
+        //returns a string to be displayed as the HUD
         private string GetHUDMessage()
         {
             string HUD = string.Empty;
@@ -295,6 +297,45 @@ namespace GOL
             generations = 0;
 
             graphicsPanel1.Invalidate();
+        }
+
+        //Save as logic
+        private void SaveAs()
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "All Files|*.*|Cells|*.cells";
+            dlg.FilterIndex = 2; dlg.DefaultExt = "cells";
+
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                StreamWriter writer = new StreamWriter(dlg.FileName);
+
+                //comments
+                writer.WriteLine("!Universe saved at: " + DateTime.Now);
+
+                //write out data
+                for (int y = 0; y < universe.GetLength(1); y++)
+                {
+                    String row = string.Empty;
+
+                    for (int x = 0; x < universe.GetLength(0); x++)
+                    {
+                        if (universe[x, y])
+                        {
+                            row += "O";
+                            continue;
+                        }
+
+                        row += ".";
+                    }
+
+                    writer.WriteLine(row);
+                }
+                
+                // After all rows and columns have been written then close the file.
+                writer.Close();
+            }
         }
 
         #region Click Events
@@ -533,6 +574,12 @@ namespace GOL
 
             graphicsPanel1.Invalidate();
         }
+        
+        //Save as click event
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveAs();
+        }
         #endregion
 
         //form closed event
@@ -548,6 +595,8 @@ namespace GOL
 
             //save settings
             Properties.Settings.Default.Save();
-        }  
+        }
+
+        
     }
 }
