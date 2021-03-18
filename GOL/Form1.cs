@@ -32,6 +32,9 @@ namespace GOL
         //Current seed
         int seed = 0;
 
+        //toggle boundary behavior
+        bool isToroidal = true;
+
         public Form1()
         {
             InitializeComponent();
@@ -62,7 +65,15 @@ namespace GOL
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    int count = CountNeighborsToroidal(x, y);
+                    int count;
+                    if (isToroidal)
+                    {
+                        count = CountNeighborsToroidal(x, y);
+                    }
+                    else
+                    {
+                        count = CountNeighborsFinite(x, y);
+                    }
 
                     // apply the rules of life
                     if (count < 2 || count > 3) scratchpad[x, y] = false;
@@ -429,6 +440,22 @@ namespace GOL
             }
 
             graphicsPanel1.Invalidate();
+        }
+
+        //toggle toroidal
+        private void toroidalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isToroidal = !isToroidal;
+            toroidalToolStripMenuItem.Checked = !toroidalToolStripMenuItem.Checked;
+            finiteToolStripMenuItem.Checked = !finiteToolStripMenuItem.Checked;
+        }
+
+        //toggle finite
+        private void finiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isToroidal = !isToroidal;
+            toroidalToolStripMenuItem.Checked = !toroidalToolStripMenuItem.Checked;
+            finiteToolStripMenuItem.Checked = !finiteToolStripMenuItem.Checked;
         }
         #endregion
 
