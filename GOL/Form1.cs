@@ -35,6 +35,9 @@ namespace GOL
         //toggle boundary behavior
         bool isToroidal = true;
 
+        //toggle view neighbor count
+        bool showNeighborCount = true;
+
         public Form1()
         {
             InitializeComponent();
@@ -183,7 +186,7 @@ namespace GOL
 
 
                     //show neighbor count
-                    if (CountNeighbors(x, y) > 0)
+                    if (showNeighborCount && CountNeighbors(x, y) > 0)
                     {
                         //calculate font size based on cell size
                         float fontSize = cellHeight - 10;
@@ -457,6 +460,14 @@ namespace GOL
             isToroidal = !isToroidal;
             toroidalToolStripMenuItem.Checked = !toroidalToolStripMenuItem.Checked;
             finiteToolStripMenuItem.Checked = !finiteToolStripMenuItem.Checked;
+        }
+
+        //toggle view count nieghbor
+        private void neighborCountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showNeighborCount = !showNeighborCount;
+            neighborCountToolStripMenuItem.Checked = !neighborCountToolStripMenuItem.Checked;
+            graphicsPanel1.Invalidate();
         }
         #endregion
 
