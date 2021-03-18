@@ -36,8 +36,8 @@ namespace GOL
         bool showHUD = true;
         bool isToroidal = true;
 
-        //File name
-        string fileName = string.Empty;
+        //File path with name
+        string filePath = string.Empty;
 
 
         public Form1()
@@ -225,7 +225,6 @@ namespace GOL
                 e.Graphics.DrawString(GetHUDMessage(), font, Brushes.Black, graphicsPanel1.ClientRectangle, stringFormat);
             }
 
-
             //Update living cell count
             toolStripStatusLabelLivingCells.Text = "Living Cells = " + GetCellCount();
 
@@ -299,6 +298,11 @@ namespace GOL
             //reset generations count
             generations = 0;
 
+            //reset fileName
+            filePath = string.Empty;
+
+            this.Text = "Untitled - Game Of Life";
+
             graphicsPanel1.Invalidate();
         }
 
@@ -312,7 +316,7 @@ namespace GOL
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                fileName = dlg.FileName;
+                filePath = dlg.FileName;
                 Save();
             }
         }
@@ -321,13 +325,13 @@ namespace GOL
         private void Save()
         {
             //check if file has a name
-            if(fileName == string.Empty || fileName == null)
+            if(filePath == string.Empty || filePath == null)
             {
                 SaveAs();
                 return;
             }
 
-            StreamWriter writer = new StreamWriter(fileName);
+            StreamWriter writer = new StreamWriter(filePath);
 
             //comments
             writer.WriteLine("!Universe saved at: " + DateTime.Now);
@@ -352,6 +356,8 @@ namespace GOL
             }
 
             writer.Close();
+
+            this.Text = Path.GetFileName(filePath) + " - Game Of Life";
         }
 
         #region Click Events
