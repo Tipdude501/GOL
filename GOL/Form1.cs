@@ -347,8 +347,8 @@ namespace GOL
             NextGeneration();
         }
 
-        //new toolstrip button click event
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        //new document click event
+        private void newDocument_Click(object sender, EventArgs e)
         {
             NewDocument();
         }
