@@ -65,6 +65,7 @@ namespace GOL
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
+                    //get neighbor count
                     int count = CountNeighbors(x, y);
 
                     // apply the rules of life
