@@ -218,15 +218,12 @@ namespace GOL
                 stringFormat.Alignment = StringAlignment.Near;
                 stringFormat.LineAlignment = StringAlignment.Far;
 
-                Rectangle rect = new Rectangle(0, 0, 100, 100);
-                int neighbors = 8;
-
-                e.Graphics.DrawString("Test Message", font, Brushes.Black, graphicsPanel1.ClientRectangle, stringFormat);
+                e.Graphics.DrawString(GetHUDMessage(), font, Brushes.Black, graphicsPanel1.ClientRectangle, stringFormat);
             }
 
 
             //Update living cell count
-            toolStripStatusLabelLivingCells.Text = "Living Cells = " + CellCount();
+            toolStripStatusLabelLivingCells.Text = "Living Cells = " + GetCellCount();
 
             // Cleaning up pens and brushes
             gridPen.Dispose();
@@ -255,7 +252,7 @@ namespace GOL
         }
 
         //returns the current number of living cells in the universe
-        private int CellCount()
+        private int GetCellCount()
         {
             int count = 0;
 
@@ -270,6 +267,16 @@ namespace GOL
                 }
             }
             return count;
+        }
+
+        private string GetHUDMessage()
+        {
+            string HUD = string.Empty;
+
+            HUD += "Generation: " + generations + "\n";
+            HUD += "Cell count: " + GetCellCount() + "\n";
+
+            return HUD;
         }
         
         #region Click Events
@@ -495,6 +502,14 @@ namespace GOL
             gridToolStripMenuItem.Checked = !gridToolStripMenuItem.Checked;
             graphicsPanel1.Invalidate();
         }
+        
+        //toggle view HUD
+        private void hUDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showHUD = !showHUD;
+            hUDToolStripMenuItem.Checked = !hUDToolStripMenuItem.Checked;
+            graphicsPanel1.Invalidate();
+        }
         #endregion
 
         //form closed event
@@ -511,5 +526,7 @@ namespace GOL
             //save settings
             Properties.Settings.Default.Save();
         }
+
+        
     }
 }

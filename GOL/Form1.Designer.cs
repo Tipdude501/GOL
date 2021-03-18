@@ -40,6 +40,9 @@ namespace GOL
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.neighborCountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toroidalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.finiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,10 +73,8 @@ namespace GOL
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelLivingCells = new System.Windows.Forms.ToolStripStatusLabel();
-            this.neighborCountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graphicsPanel1 = new GOL.GraphicsPanel();
+            this.hUDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -163,12 +164,36 @@ namespace GOL
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gridToolStripMenuItem,
             this.neighborCountToolStripMenuItem,
+            this.hUDToolStripMenuItem,
             this.toolStripSeparator5,
             this.toroidalToolStripMenuItem,
             this.finiteToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // gridToolStripMenuItem
+            // 
+            this.gridToolStripMenuItem.Checked = true;
+            this.gridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gridToolStripMenuItem.Name = "gridToolStripMenuItem";
+            this.gridToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gridToolStripMenuItem.Text = "Grid";
+            this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
+            // 
+            // neighborCountToolStripMenuItem
+            // 
+            this.neighborCountToolStripMenuItem.Checked = true;
+            this.neighborCountToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.neighborCountToolStripMenuItem.Name = "neighborCountToolStripMenuItem";
+            this.neighborCountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.neighborCountToolStripMenuItem.Text = "Neighbor Count";
+            this.neighborCountToolStripMenuItem.Click += new System.EventHandler(this.neighborCountToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // toroidalToolStripMenuItem
             // 
@@ -416,29 +441,6 @@ namespace GOL
             this.toolStripStatusLabelLivingCells.Size = new System.Drawing.Size(87, 17);
             this.toolStripStatusLabelLivingCells.Text = "Living Cells = 0";
             // 
-            // neighborCountToolStripMenuItem
-            // 
-            this.neighborCountToolStripMenuItem.Checked = true;
-            this.neighborCountToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.neighborCountToolStripMenuItem.Name = "neighborCountToolStripMenuItem";
-            this.neighborCountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.neighborCountToolStripMenuItem.Text = "Neighbor Count";
-            this.neighborCountToolStripMenuItem.Click += new System.EventHandler(this.neighborCountToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
-            // 
-            // gridToolStripMenuItem
-            // 
-            this.gridToolStripMenuItem.Checked = true;
-            this.gridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.gridToolStripMenuItem.Name = "gridToolStripMenuItem";
-            this.gridToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gridToolStripMenuItem.Text = "Grid";
-            this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
-            // 
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
@@ -449,6 +451,15 @@ namespace GOL
             this.graphicsPanel1.TabIndex = 3;
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
+            // 
+            // hUDToolStripMenuItem
+            // 
+            this.hUDToolStripMenuItem.Checked = true;
+            this.hUDToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hUDToolStripMenuItem.Name = "hUDToolStripMenuItem";
+            this.hUDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hUDToolStripMenuItem.Text = "HUD";
+            this.hUDToolStripMenuItem.Click += new System.EventHandler(this.hUDToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -520,6 +531,7 @@ namespace GOL
         private System.Windows.Forms.ToolStripMenuItem neighborCountToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem gridToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hUDToolStripMenuItem;
     }
 }
 
