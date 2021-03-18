@@ -65,15 +65,7 @@ namespace GOL
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    int count;
-                    if (isToroidal)
-                    {
-                        count = CountNeighborsToroidal(x, y);
-                    }
-                    else
-                    {
-                        count = CountNeighborsFinite(x, y);
-                    }
+                    int count = CountNeighbors(x, y);
 
                     // apply the rules of life
                     if (count < 2 || count > 3) scratchpad[x, y] = false;
@@ -99,7 +91,7 @@ namespace GOL
         }
 
         //Counts the number of living neighbors of a given cell, treating the esges like they wrap around
-        private int CountNeighborsToroidal(int x, int y)
+        private int CountNeighbors(int x, int y)
         {
             //Neigbor count
             int count = 0;
@@ -119,49 +111,25 @@ namespace GOL
                     //ignore if this is the origianl cell
                     if (xOffset == 0 && yOffset == 0) continue;
 
-                    //if past the universe bounds, wrap around to the other side
-                    if (xCheck < 0) xCheck = xLen - 1;
-                    if (yCheck < 0) yCheck = yLen - 1;
-                    if (xCheck >= xLen) xCheck = 0;
-                    if (yCheck >= yLen) yCheck = 0;
+                    if (isToroidal)
+                    {
+                        //toroidal boundary behavior
+                        if (xCheck < 0) xCheck = xLen - 1;
+                        if (yCheck < 0) yCheck = yLen - 1;
+                        if (xCheck >= xLen) xCheck = 0;
+                        if (yCheck >= yLen) yCheck = 0;
+                    }
+                    else
+                    {
+                        //finite boundary behavior
+                        if (xCheck < 0) continue;
+                        if (yCheck < 0) continue;
+                        if (xCheck >= xLen) continue;
+                        if (yCheck >= yLen) continue;
+                    }
 
                     //add to count if given adjacent cell is alive
                     if (universe[xCheck, yCheck] == true) count++;
-                }
-            }
-            return count;
-        }
-
-        //Counts the number of living neighbors of a given cell, not wrapping around the edges
-        private int CountNeighborsFinite(int x, int y)
-        {
-            //Neigbor count
-            int count = 0;
-            //Universe bounds
-            int xLen = universe.GetLength(0);
-            int yLen = universe.GetLength(1);
-
-            //Iterate through the adjacent cells
-            for (int yOffset = -1; yOffset <= 1; yOffset++)
-            {
-                for (int xOffset = -1; xOffset <= 1; xOffset++)
-                {
-                    //getting coordinates for given adjacent cell
-                    int xCheck = x + xOffset;
-                    int yCheck = y + yOffset;
-
-                    //ignore if this is the origianl cell
-                    if (xOffset == 0 && yOffset == 0) continue;
-
-                    //ignore if past the universe bounds
-                    if (xCheck < 0) continue;
-                    if (yCheck < 0) continue;
-                    if (xCheck >= xLen) continue;
-                    if (yCheck >= yLen) continue;
-
-                    //add to count if given adjacent cell is alive
-                    if (universe[xCheck, yCheck] == true) count++;
-
                 }
             }
             return count;
