@@ -23,20 +23,18 @@ namespace GOL
         // The Timer class
         Timer timer = new Timer();
 
-        // Generation count
+        // Status strip items
         int generations = 0;
-
-        //Number of living cells count
         int cells = 0;
 
         //Current seed
         int seed = 0;
 
-        //toggle boundary behavior
+        //View menu items
+        bool showGrid = true;
+        bool showNeighborCount = true;
         bool isToroidal = true;
 
-        //toggle view neighbor count
-        bool showNeighborCount = true;
 
         public Form1()
         {
@@ -216,8 +214,8 @@ namespace GOL
                     }
 
 
-                    // Outline the cell with a pen
-                    e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    // Draw grid
+                    if(showGrid) e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
                 }
             }
 
@@ -467,6 +465,14 @@ namespace GOL
         {
             showNeighborCount = !showNeighborCount;
             neighborCountToolStripMenuItem.Checked = !neighborCountToolStripMenuItem.Checked;
+            graphicsPanel1.Invalidate();
+        }
+        
+        //toggle view grid
+        private void gridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showGrid = !showGrid;
+            gridToolStripMenuItem.Checked = !gridToolStripMenuItem.Checked;
             graphicsPanel1.Invalidate();
         }
         #endregion
