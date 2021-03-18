@@ -284,7 +284,19 @@ namespace GOL
 
             return HUD;
         }
-        
+
+        //Clear all the data in the document
+        private void NewDocument()
+        {
+            //reset universe
+            universe = new bool[universe.GetLength(0), universe.GetLength(1)];
+
+            //reset generations count
+            generations = 0;
+
+            graphicsPanel1.Invalidate();
+        }
+
         #region Click Events
         //graphics panel click event
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
@@ -338,19 +350,7 @@ namespace GOL
         //new toolstrip button click event
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //set all the cells in the universe to false
-            for (int y = 0; y < universe.GetLength(1); y++)
-            {
-                for (int x = 0; x < universe.GetLength(0); x++)
-                {
-                    universe[x, y] = false;
-                }
-            }
-
-            //reset generations count
-            generations = 0;
-
-            graphicsPanel1.Invalidate();
+            NewDocument();
         }
 
         //seed from current time click event
