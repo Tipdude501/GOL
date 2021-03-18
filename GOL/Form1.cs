@@ -212,7 +212,7 @@ namespace GOL
             //Draw HUD
             if (showHUD)
             {
-                Font font = new Font("Arial", 20f);
+                Font font = new Font("Arial", 15f);
 
                 StringFormat stringFormat = new StringFormat();
                 stringFormat.Alignment = StringAlignment.Near;
@@ -275,6 +275,12 @@ namespace GOL
 
             HUD += "Generation: " + generations + "\n";
             HUD += "Cell count: " + GetCellCount() + "\n";
+
+            HUD += "Boundary Behavior: ";
+            if (isToroidal) HUD += "Toroidal\n";
+            else HUD += "Finite\n";
+
+            HUD += "Universe size: {Width=" + universe.GetLength(0) + ", Length=" + universe.GetLength(1) + "}\n";
 
             return HUD;
         }
@@ -340,6 +346,9 @@ namespace GOL
                     universe[x, y] = false;
                 }
             }
+
+            //reset generations count
+            generations = 0;
 
             graphicsPanel1.Invalidate();
         }
@@ -471,20 +480,13 @@ namespace GOL
             graphicsPanel1.Invalidate();
         }
 
-        //toggle toroidal
-        private void toroidalToolStripMenuItem_Click(object sender, EventArgs e)
+        //toggle boundary behavior
+        private void toggleBoundaryBehavior_Click(object sender, EventArgs e)
         {
             isToroidal = !isToroidal;
             toroidalToolStripMenuItem.Checked = !toroidalToolStripMenuItem.Checked;
             finiteToolStripMenuItem.Checked = !finiteToolStripMenuItem.Checked;
-        }
-
-        //toggle finite
-        private void finiteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isToroidal = !isToroidal;
-            toroidalToolStripMenuItem.Checked = !toroidalToolStripMenuItem.Checked;
-            finiteToolStripMenuItem.Checked = !finiteToolStripMenuItem.Checked;
+            graphicsPanel1.Invalidate();
         }
 
         //toggle view count nieghbor
@@ -525,8 +527,6 @@ namespace GOL
 
             //save settings
             Properties.Settings.Default.Save();
-        }
-
-        
+        }  
     }
 }
