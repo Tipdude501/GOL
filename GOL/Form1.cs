@@ -30,6 +30,9 @@ namespace GOL
         //Current seed
         int seed = 0;
 
+        //Density value for random generation
+        int density = 3;
+
         //View menu items
         bool showGrid = true;
         bool showNeighborCount = true;
@@ -239,7 +242,10 @@ namespace GOL
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
                     //randomaly wake the cell
-                    int state = r.Next(0, 2);
+                    int state;
+                    if (density == 0) state = r.Next(0, density);
+                    else state = r.Next(0, density-1);
+
                     if (state == 0) scratchpad[x, y] = true;
                     else scratchpad[x, y] = false;
                 }
@@ -497,8 +503,19 @@ namespace GOL
             if (DialogResult.OK == s.ShowDialog())
             {
                 seed = s.Seed;
-                graphicsPanel1.Invalidate();
                 FillUniverseRandom();
+            }
+        }
+
+        //change random density click event
+        private void randomDensityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DensityDialog dlg = new DensityDialog();
+            dlg.Density = density;
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                density = dlg.Density;
             }
         }
 
@@ -695,7 +712,5 @@ namespace GOL
             //save settings
             Properties.Settings.Default.Save();
         }
-
-        
     }
 }
