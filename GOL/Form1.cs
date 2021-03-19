@@ -327,7 +327,8 @@ namespace GOL
             StreamWriter writer = new StreamWriter(filePath);
 
             //comments
-            writer.WriteLine("!Universe saved at: " + DateTime.Now);
+            writer.WriteLine("!Universe name: " + Path.GetFileNameWithoutExtension(filePath));
+            writer.WriteLine("!Saved at: " + DateTime.Now);
             writer.WriteLine("!Seed at time of saving: " + seed);
 
             //write out data
@@ -351,7 +352,7 @@ namespace GOL
 
             writer.Close();
 
-            this.Text = Path.GetFileName(filePath) + " - Game Of Life";
+            this.Text = Path.GetFileNameWithoutExtension(filePath) + " - Game Of Life";
         }
 
         //Open new file
@@ -415,7 +416,7 @@ namespace GOL
 
                 //set up new document
                 generations = 0;
-                this.Text = Path.GetFileName(filePath) + " - Game Of Life";
+                this.Text = Path.GetFileNameWithoutExtension(filePath) + " - Game Of Life";
                 graphicsPanel1.Invalidate();
             }
         }
