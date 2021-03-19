@@ -293,6 +293,8 @@ namespace GOL
         //Clear all the data in the document
         private void NewDocument()
         {
+            timer.Enabled = false;
+
             //reset universe
             universe = new bool[universe.GetLength(0), universe.GetLength(1)];
 
