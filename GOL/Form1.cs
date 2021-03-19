@@ -357,8 +357,8 @@ namespace GOL
         //Open new file
         private void Open()
         {
-            //clear old document data
-            //NewDocument();
+            //pause runtime
+            timer.Enabled = false;
 
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "All Files|*.*|Cells|*.cells";
