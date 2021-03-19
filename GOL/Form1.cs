@@ -181,19 +181,14 @@ namespace GOL
                     if (showNeighborCount && CountNeighbors(x, y) > 0)
                     {
                         //calculate font size based on cell size
-                        float fontSize = cellHeight - 10;
-                        if (fontSize < 7)
-                        {
-                            fontSize = cellHeight - 5;
-                        }
-                        if (fontSize < 7)
-                        {
-                            fontSize = cellHeight - 2;
-                        }
-                        if (fontSize < 7)
-                        {
-                            fontSize = cellHeight;
-                        }
+                        float fontSize = cellHeight - 30;
+
+                        if (fontSize > 7) fontSize = cellHeight - 10;
+                        if (fontSize > 7) fontSize = cellHeight - 20;
+
+                        if (fontSize < 7) fontSize = cellHeight - 5;
+                        if (fontSize < 7) fontSize = cellHeight - 2;
+                        if (fontSize < 7) fontSize = cellHeight;
 
                         //font for neighbor count
                         Font font = new Font("Arial", fontSize);
@@ -306,7 +301,6 @@ namespace GOL
             graphicsPanel1.Invalidate();
         }
 
-        //Save as logic
         private void SaveAs()
         {
             SaveFileDialog dlg = new SaveFileDialog();
@@ -321,7 +315,6 @@ namespace GOL
             }
         }
 
-        //Save
         private void Save()
         {
             //check if file has a name
@@ -358,6 +351,72 @@ namespace GOL
             writer.Close();
 
             this.Text = Path.GetFileName(filePath) + " - Game Of Life";
+        }
+
+        //Open new file
+        private void Open()
+        {
+            //clear old document data
+            //NewDocument();
+
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "All Files|*.*|Cells|*.cells";
+            dlg.FilterIndex = 2;
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                
+                StreamReader reader = new StreamReader(dlg.FileName);
+                filePath = dlg.FileName;
+                bool[,] scratchpad;
+                int width = 0;
+                int height = 0;
+                int y = 0;
+
+                //get size of universe
+                while (!reader.EndOfStream)
+                {
+                    string row = reader.ReadLine();
+
+                    //ignore comments
+                    if (row[0] == '!') continue;
+
+                    height++;
+                    if (width == 0) width = row.Length;
+                }
+                reader.BaseStream.Seek(0, SeekOrigin.Begin);
+
+                //resize scratchpad
+                scratchpad = new bool[width, height];
+
+                //read in data
+                while (!reader.EndOfStream)
+                {
+                    string row = reader.ReadLine();
+
+                    //ignore comments
+                    if (row[0] == '!') continue;
+
+                    //mark live cells
+                    for (int x = 0; x < row.Length; x++)
+                    {
+                        if (row[x] == 'O') scratchpad[x, y] = true;
+                    }
+                    y++;
+                }
+
+                universe = scratchpad;
+
+                // Close the file.
+                reader.Close();
+
+
+
+                //set up new document
+                generations = 0;
+                this.Text = Path.GetFileName(filePath) + " - Game Of Life";
+                graphicsPanel1.Invalidate();
+            }
         }
 
         #region Click Events
@@ -607,6 +666,12 @@ namespace GOL
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Save();
+        }
+        
+        //open file click event
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Open();
         }
         #endregion
 
