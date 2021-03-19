@@ -457,12 +457,16 @@ namespace GOL
         private void startToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = true;
+            startToolStripButton.Enabled = false;
+            pauseToolStripButton.Enabled = true;
         }
 
         //pause tool strip button click event
         private void pauseToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
+            startToolStripButton.Enabled = true;
+            pauseToolStripButton.Enabled = false;
         }
 
         //next tool strip button click event
