@@ -92,6 +92,7 @@ namespace GOL
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Name = "DensityDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Density Dialog";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
