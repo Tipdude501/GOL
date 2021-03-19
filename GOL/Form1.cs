@@ -85,8 +85,7 @@ namespace GOL
 
             //iterate generations
             generations++;
-            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
-            
+
             graphicsPanel1.Invalidate();
         }
 
@@ -220,7 +219,8 @@ namespace GOL
                 e.Graphics.DrawString(GetHUDMessage(), font, Brushes.Black, graphicsPanel1.ClientRectangle, stringFormat);
             }
 
-            //Update living cell count
+            //Update status strip items
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             toolStripStatusLabelLivingCells.Text = "Living Cells = " + GetCellCount();
 
             // Cleaning up pens and brushes
