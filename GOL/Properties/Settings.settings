@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="BackColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Control</Value>
+      <Value Profile="(Default)">White</Value>
     </Setting>
     <Setting Name="GridColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">LightGray</Value>
@@ -12,13 +12,13 @@
       <Value Profile="(Default)">DarkMagenta</Value>
     </Setting>
     <Setting Name="Width" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="Height" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="Interval" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">65</Value>
     </Setting>
   </Settings>
 </SettingsFile>
