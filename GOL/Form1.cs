@@ -328,6 +328,7 @@ namespace GOL
 
             //comments
             writer.WriteLine("!Universe saved at: " + DateTime.Now);
+            writer.WriteLine("!Seed at time of saving: " + seed);
 
             //write out data
             for (int y = 0; y < universe.GetLength(1); y++)
